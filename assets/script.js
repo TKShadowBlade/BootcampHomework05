@@ -8,5 +8,27 @@ $(document).ready(function() {
         localStorage.setItem(time, text);
     })
 
-    
+    function getHours() {
+        var currTime = moment().hour();
+
+        $(".time-block").each(function() {
+            var timeBlockEl = parseInt($(this).attr("id").split("hour")[1]);
+
+            if(timeBlockEl < currTime) {
+                $(this).removeClass("future");
+                $(this).removeClass("present");
+                $(this).addClass("past");
+            } else if (timeBlockEl === currTime) {
+                $(this).removeClass("future");
+                $(this).addClass("present");
+                $(this).removeClass("past");
+            } else {
+                $(this).addClass("future");
+                $(this).removeClass("present");
+                $(this).removeClass("past");
+            }
+            
+        })
+    }
+    getHours();
 })
